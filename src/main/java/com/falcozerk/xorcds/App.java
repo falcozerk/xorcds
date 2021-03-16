@@ -1,5 +1,7 @@
 package com.falcozerk.xorcds;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -96,11 +98,11 @@ public class App {
         Artist artist = artistMap.get(artistName);
         if (artist == null) {
             artist = new Artist();
+            artist.setName(artistName);
+            artist.setPath(artistName + "/");
+
             artistMap.put(artistName, artist);
         }
-
-        artist.setName(artistName);
-        artist.setPath(artistName + "/");
 
         return artist;
     }
@@ -109,12 +111,12 @@ public class App {
         Album album = pArtist.getAlbumMap().get(pName);
         if (album == null) {
             album = new Album();
+
+            album.setName(pName);
+            album.setPath(pName + "/");
+
             pArtist.getAlbumMap().put(pName, album);
         }
-
-        album.setArtist(pArtist);
-        album.setName(pName);
-        album.setPath(pName + "/");
 
         return album;
     }
@@ -124,15 +126,26 @@ public class App {
         if (track == null) {
             track = new Track();
             pAlbum.getTrackMap().put(pName, track);
-        }
 
-        track.setAlbum(pAlbum);
-        track.setName(pName);
-        track.setPath(pName + "/");
+            track.setName(pName);
+            track.setPath(pName + "/");
+        }
 
         return track;
     }
 
     public void compareTrees(TreeMap<String, Artist> pTreeOne, TreeMap<String, Artist> pTreeTwo) {
+        TreeMap<String,Artist> removeTree = new TreeMap<>();
+
+        for (Map.Entry<String, Artist> treeOneEntry : pTreeOne.entrySet()) {
+            for (Map.Entry<String, Artist> treeTwoEntry : pTreeOne.entrySet()) {
+                Artist artistOne = treeOneEntry.getValue();
+                Artist artistTwo = treeTwoEntry.getValue();
+
+                if ( StringUtils.equals( artistOne.getName(), artistTwo.getName() ) ) {
+                    System.out.println("Equal");
+                }
+            }
+        }
     }
 }

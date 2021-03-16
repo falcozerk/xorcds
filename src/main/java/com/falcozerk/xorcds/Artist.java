@@ -10,5 +10,4 @@ class Artist {
     String name;
     String path;
     Map<String, Album> albumMap = new HashMap<>();
-    ;
 }
