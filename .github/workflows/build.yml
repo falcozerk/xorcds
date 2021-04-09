@@ -3,10 +3,8 @@
 
 name: build xorcds
 
-on:
-  release:
-    types: [created]
-q
+on: [push]
+
 jobs:
   build:
 
