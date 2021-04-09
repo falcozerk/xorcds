@@ -31,5 +31,15 @@
         </dependency>
     </dependencies>
 
+    
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>Falcozerk XorCds</name>
+     <url>https://maven.pkg.github.com/falcozerk/xorcds</url>
+   </repository>
+</distributionManagement>
+     
+       
 
 </project>
